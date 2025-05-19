@@ -69,15 +69,25 @@
 }
 
 .note-colour-btns{
-  display:flex;
+  display: flex;
   justify-content: center;
   margin-top: 10px;
   margin-bottom: 10px;
   text-align: center;
   font-size: 12px;
+  gap: 8px; /* Add spacing between buttons */
+}
+
+.colour-btn{
+  width: 24px;
+  height: 24px;
+  border-radius: 50%; /* Makes the buttons circular */
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 
 .colour-btn:hover{
-  transform: scale(1 , 2);
+  transform: scale(1.2);
   transition: transform 0.3s;
 }

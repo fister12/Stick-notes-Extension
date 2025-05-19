@@ -64,9 +64,9 @@ function createStickyNote(data = {}) {
   ];
 
   //creating colour buttons
-  colours.forEach(colour=>{
+    colours.forEach(colour=>{
     const colourBtn = document.createElement('button');
-    colourBtn.className = 'note-colour-btn';
+    colourBtn.className = 'colour-btn'; // Changed from 'note-colour-btn' to match CSS
     colourBtn.style.backgroundColor = colour.value;
     colourBtn.title = colour.name;
     colourBtn.addEventListener('click', () => {
