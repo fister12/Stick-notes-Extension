@@ -67,3 +67,17 @@
   overflow: auto;
   word-wrap: break-word;
 }
+
+.note-colour-btns{
+  display:flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.colour-btn:hover{
+  transform: scale(1 , 2);
+  transition: transform 0.3s;
+}

@@ -42,12 +42,42 @@ function createStickyNote(data = {}) {
   note.contentEditable = true;
   note.style.opacity = data.opacity || '1';
   note.dataset.id = data.id || Date.now().toString();
+  note.colour = data.colour || '#FFEB3B';
+  note.style.backgroundColor = note.colour;
 
   // Create a separate content div to hold user text
   const contentDiv = document.createElement('div');
   contentDiv.className = 'note-content';
   contentDiv.textContent = data.content || 'Type here...';
   contentDiv.contentEditable = true;
+
+  const colourDiv = document.createElement('div');
+  colourDiv.className = 'note-colour-btns';
+
+ const colours = [
+    { name: 'Yellow', value: '#FFEB3B' },
+    { name: 'Green', value: '#CCFF90' },
+    { name: 'Blue', value: '#80D8FF' },
+    { name: 'Purple', value: '#E1BEE7' },
+    { name: 'Pink', value: '#F8BBD0' },
+    { name: 'Orange', value: '#FFD180' }
+  ];
+
+  //creating colour buttons
+  colours.forEach(colour=>{
+    const colourBtn = document.createElement('button');
+    colourBtn.className = 'note-colour-btn';
+    colourBtn.style.backgroundColor = colour.value;
+    colourBtn.title = colour.name;
+    colourBtn.addEventListener('click', () => {
+      note.style.backgroundColor = colour.value;
+      note.colour = colour.value;
+      updateAllNotes();
+    });
+    colourDiv.appendChild(colourBtn);
+  });
+
+
   
   // The main div is no longer directly editable
   note.contentEditable = false;
@@ -126,8 +156,7 @@ function createStickyNote(data = {}) {
   note.appendChild(closeBtn);
   note.appendChild(button);
   note.appendChild(slider);
-  
-  // Append the content div as the last child so it takes up the remaining space
+  note.appendChild(colourDiv);  // Add the color buttons
   note.appendChild(contentDiv);
   
   // Add the note to the document body
@@ -148,7 +177,8 @@ function updateAllNotes() {
       content: content,
       top: n.style.top,
       left: n.style.left,
-      opacity: n.style.opacity
+      opacity: n.style.opacity,
+      colour: n.colour
     };
   });
   
